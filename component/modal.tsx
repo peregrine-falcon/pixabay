@@ -19,7 +19,7 @@ function Modal({ setModal, imageUrl }: { setModal: any, imageUrl: string }) {
             <>
                 {setModal ? (
                     <>
-                        <div className="justify-center items-center flex fixed inset-0 z-50 sm:m-6 overflow-auto">
+                        <div className="justify-center items-center md:flex fixed inset-0 z-50 sm:m-6 rounded-md overflow-auto">
                             <div className="relative w-auto mx-auto max-w-full">
                                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
 
@@ -34,10 +34,10 @@ function Modal({ setModal, imageUrl }: { setModal: any, imageUrl: string }) {
                                     </div>
 
                                     <div className="grid md:grid-cols-3 gap-4 pt-[60px] px-6">
-                                        <div className='col-span-2'>
+                                        <div className='md:col-span-2'>
                                             <img src={selectedMovie?.largeImageURL} alt="image" width={832} height={555} className="block lg:h-[470px] w-full object-cover rounded-lg" />
                                         </div>
-                                        <div className='col-span-1'>
+                                        <div className='md:col-span-1'>
 
                                             <h3 className='text-[#3B4043] font-medium text-xl'>Download</h3>
 
@@ -62,11 +62,13 @@ function Modal({ setModal, imageUrl }: { setModal: any, imageUrl: string }) {
                                                 </tbody>
                                             </table>
 
-                                            <button className="bg-[#4BC34B] hover:bg-[#2b6b2b] w-full text-white font-bold py-2 px-4 rounded">
-                                                {/* <Link href={selectedMovie?.previewURL}> */}
-                                                    Download for free!
-                                                {/* </Link> */}
-                                            </button>
+                                            {selectedMovie?.previewURL && (
+                                                <Link href={selectedMovie?.previewURL}>
+                                                    <button className="bg-[#4BC34B] hover:bg-[#2b6b2b] w-full text-white font-bold py-2 px-4 rounded">
+                                                        Download for free!
+                                                    </button>
+                                                </Link>
+                                            )}
 
                                             <h2 className='text-[#3B4043] font-medium text-xl my-4'>Information</h2>
 
@@ -104,8 +106,8 @@ function Modal({ setModal, imageUrl }: { setModal: any, imageUrl: string }) {
                                         </div>
                                     </div>
 
-                                    <div className='text-lg font-bold overflow-auto text-[#3B4043] p-6 flex items-center'>Tags:
-                                        <ul className="flex text-center overflow-auto">
+                                    <div className='text-lg font-bold overflow-auto text-[#3B4043] p-6 flex items-center gap-4'>Tags:
+                                        <ul className="flex text-center overflow-auto gap-4">
                                             {movieList?.slice(0, 3).map((e: any) => (
                                                 <li className="me-4 flex" key={e.id}>
                                                     {e.tags.split(',').map((tag: string, index: number) => (

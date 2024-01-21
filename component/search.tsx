@@ -71,7 +71,4 @@ const Search = () => {
 }
 
 export default Search;
-function onSearchValueChange(searchTerm: string) {
-    throw new Error('Function not implemented.');
-}
 
