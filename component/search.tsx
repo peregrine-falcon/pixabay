@@ -1,28 +1,36 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import Spinner from '@/component/spinner';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { setPixbayData } from '@/utils/store/picSlice';
+import { searchItemData } from '@/utils/store/searchSlice';
+
 
 const Search = () => {
-
     const [searchTerm, setSearchTerm] = useState('');
     const [placeholder, setPlaceholder] = useState('Search');
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const router = useRouter();
     const apiKey = process.env.React_PIXABAY_KEY;
-    console.log(apiKey, "apikey");
 
     const handleSearch = () => {
+        setLoading(true);
         fetch(`https://pixabay.com/api/?key=37819534-610a8a2819036d674cbeb3178&q=${searchTerm}&image_type=photo`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.hits);
                 const mainData = data.hits;
                 dispatch(setPixbayData(mainData));
+                dispatch(searchItemData(searchTerm));
                 setPlaceholder('Start new Search');
                 setSearchTerm('');
+                setLoading(false);
                 router.push('/result');
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+                setLoading(false);
             });
     };
 
@@ -30,12 +38,11 @@ const Search = () => {
         setSearchTerm(event.target.value);
     };
 
-
     return (
         <>
             <div className="mt-[76px] flex justify-center">
                 <form className="w-full max-w-[756px] hero-container px-4 mx-5">
-                    <div className="flex items-center border-b py-3">
+                    <div className="flex items-center py-3">
                         <Image src={'/svg/search.svg'} alt="search-icon" width={22} height={22} />
                         <div
                             className="inline-block h-[32px] mx-3 mt-1 min-h-[1em] w-0.5 self-stretch bg-neutral-100 opacity-100"></div>
@@ -57,9 +64,14 @@ const Search = () => {
                     </div>
                 </form>
             </div>
-        </>
 
-    )
+            {loading && <Spinner />}
+        </>
+    );
 }
 
 export default Search;
+function onSearchValueChange(searchTerm: string) {
+    throw new Error('Function not implemented.');
+}
+
