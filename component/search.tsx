@@ -55,7 +55,7 @@ const Search = () => {
                             onChange={handleInputChange}
                         />
                         <button
-                            className="flex-shrink-0 border-2 border-[#fff] text-white font-semibold text-lg py-1 px-4 rounded-lg"
+                            className="flex-shrink-0 border-2 border-[#fff] hover:border-[#262525] hover:text-[#2c2b2b] text-white font-semibold text-lg py-1 px-4 rounded-lg"
                             type="button"
                             onClick={handleSearch}
                         >
