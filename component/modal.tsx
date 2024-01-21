@@ -19,7 +19,7 @@ function Modal({ setModal, imageUrl }: { setModal: any, imageUrl: string }) {
             <>
                 {setModal ? (
                     <>
-                        <div className="justify-center items-center md:flex fixed inset-0 z-50 sm:m-6 rounded-md overflow-auto">
+                        <div className="justify-center items-center md:flex fixed inset-0 z-50 sm:m-6 rounded-md overflow-auto md:overflow-visible">
                             <div className="relative w-auto mx-auto max-w-full">
                                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
 
