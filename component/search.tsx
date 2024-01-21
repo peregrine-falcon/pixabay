@@ -4,12 +4,14 @@ import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { setPixbayData } from '@/utils/store/picSlice';
 
-const search = () => {
+const Search = () => {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [placeholder, setPlaceholder] = useState('Search');
     const dispatch = useDispatch();
     const router = useRouter();
+    const apiKey = process.env.React_PIXABAY_KEY;
+    console.log(apiKey, "apikey");
 
     const handleSearch = () => {
         fetch(`https://pixabay.com/api/?key=37819534-610a8a2819036d674cbeb3178&q=${searchTerm}&image_type=photo`)
@@ -28,12 +30,6 @@ const search = () => {
         setSearchTerm(event.target.value);
     };
 
-    const handleKeyPress = (event: any) => {
-        if (event.key === 'Enter') {
-            handleSearch();
-        }
-    };
-
 
     return (
         <>
@@ -50,7 +46,6 @@ const search = () => {
                             aria-label="Search"
                             value={searchTerm}
                             onChange={handleInputChange}
-                            onKeyPress={handleKeyPress}
                         />
                         <button
                             className="flex-shrink-0 border-2 border-[#fff] text-white font-semibold text-lg py-1 px-4 rounded-lg"
@@ -67,4 +62,4 @@ const search = () => {
     )
 }
 
-export default search;
+export default Search;

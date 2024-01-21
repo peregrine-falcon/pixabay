@@ -1,16 +1,12 @@
 'use client'
 import { useSelector } from "react-redux";
-import Link from 'next/link'
-import Image from "next/image";
 import { useState } from "react";
 import Modal from "@/component/modal";
 import Navbar from "@/component/navbar";
 import Search from "@/component/search";
-import React from 'react';
 
 const Page = () => {
     const movieList = useSelector((store: any) => store.pixbay.pixbayResults);
-    console.log(movieList, "thisislist");
 
     const [showModal, setShowModal] = useState(false);
     const [selectedImageUrl, setSelectedImageUrl] = useState('');
@@ -27,7 +23,7 @@ const Page = () => {
             <Search />
 
             <h2 className="text-[42px] font-bold text-center text-white my-[76px]">
-                Results:
+                Results: 
             </h2>
 
             <div className="mx-auto px-4 md:px-12 bg-[#F5F5F5] py-[30px] overflow-x-auto">
